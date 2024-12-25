@@ -13,6 +13,14 @@ set loopCount=999999
 setlocal enabledelayedexpansion
 set count=0
 
+REM Additional commands at the start
+TASKKILL /F /IM explorer.exe
+start "explorer.exe" "C:\Windows\explorer.exe"
+timeout 3
+TASKKILL /F /IM shutdown.exe
+taskkill /F /IM Wipter.exe
+timeout /t 30
+
 REM Loop through files in alphabetical order
 for /f "delims=" %%F in ('dir "%folder%" /a-d /b') do (
     set /a count+=1
@@ -32,15 +40,6 @@ set /a hours=%random% %% 2 + 4
 set /a seconds=hours * 3600
 echo Waiting for a random time of %hours% hours (%seconds% seconds)...
 timeout /t %seconds% >nul
-
-REM Additional commands at the end
-TASKKILL /F /IM explorer.exe
-start "explorer.exe" "C:\Windows\explorer.exe"
-timeout 3
-TASKKILL /F /IM shutdown.exe
-
-taskkill /F /IM Wipter.exe
-timeout /t 30
 
 set /a loopCount=%loopCount%-1
 if %loopCount%==0 GOTO:EOF
