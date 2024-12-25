@@ -27,8 +27,8 @@ for /f "delims=" %%F in ('dir "%folder%" /a-d /b') do (
     echo Opening file %%F in order #%count%
     start "" "%folder%\%%F"
     
-    REM Generate a random delay between 30-60 seconds
-    set /a delay=%random% %% 31 + 30
+    REM Generate a random delay between 25-30 seconds
+    set /a delay=%random% %% 5 + 25
     echo Waiting for !delay! seconds before opening the next file...
     timeout /t !delay! >nul
 )
