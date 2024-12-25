@@ -1,24 +1,24 @@
 @echo off
-:: Đặt đường dẫn tạm thời để tải file
+:: Set a temporary path to download the file
 set TEMP_FILE=%TEMP%\AutoRestartWIPTER.bat
 
-:: Dừng chờ 15 giây trước khi tải file
-echo Đang chờ 15 giây trước khi tải file...
+:: Wait for 15 seconds before downloading the file
+echo Waiting 15 seconds before downloading the file...
 timeout /t 15 /nobreak >nul
 
-:: Tải file từ URL bằng curl
+:: Download the file from the URL using curl
 curl -L https://raw.githubusercontent.com/trungdungalpha/whisper/refs/heads/main/AutoRestartWIPTER.bat -o %TEMP_FILE%
 
-:: Kiểm tra nếu file đã tải thành công
+:: Check if the file was downloaded successfully
 if exist "%TEMP_FILE%" (
-    :: Di chuyển file tới màn hình Desktop
+    :: Move the file to the Desktop
     move "%TEMP_FILE%" "%USERPROFILE%\Desktop\AutoRestartWIPTER.bat"
     
-    :: Thực thi file
+    :: Execute the file
     start "" "%USERPROFILE%\Desktop\AutoRestartWIPTER.bat"
 ) else (
-    echo Không thể tải file.
+    echo Unable to download the file.
 )
 
-:: Kết thúc
+:: End
 exit
