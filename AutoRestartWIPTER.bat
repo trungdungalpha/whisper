@@ -40,7 +40,7 @@ REM Loop through files in alphabetical order
 for /f "delims=" %%F in ('dir "%folder%" /a-d /b /o:n') do (
     set /a count+=1
     echo Opening file %%F in order #%count%
-    start "" "%folder%\%%F"
+    start /min cmd /c "%folder%\%%F"
     
     REM Generate a random delay between 25-30 seconds
     set /a delay=%random% %% 5 + 25
