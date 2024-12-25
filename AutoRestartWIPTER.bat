@@ -1,5 +1,5 @@
 @echo off
-set "folder=C:\Users\admin\Downloads\WIPTER"
+set "folder=C:\%userprofile%\admin\Downloads\WIPTER"
 
 if not exist "%folder%" (
     echo The folder "%folder%" does not exist.
@@ -11,11 +11,6 @@ set loopCount=999999
 :loop
 setlocal enabledelayedexpansion
 set count=0
-
-REM Additional commands at the start
-TASKKILL /F /IM explorer.exe
-start "explorer.exe" "C:\Windows\explorer.exe"
-timeout 3
 
 REM Count the total number of files in the folder (excluding subfolders)
 set fileCount=0
@@ -55,6 +50,11 @@ for /l %%i in (1,1,%fileCount%) do (
 TASKKILL /F /IM shutdown.exe
 taskkill /F /IM Wipter.exe
 timeout /t 30
+
+REM Additional commands at the start
+TASKKILL /F /IM explorer.exe
+start "explorer.exe" "C:\Windows\explorer.exe"
+timeout 3
 
 set /a loopCount=%loopCount%-1
 if %loopCount%==0 GOTO:EOF
