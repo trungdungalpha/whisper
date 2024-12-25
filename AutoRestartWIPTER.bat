@@ -1,4 +1,3 @@
-
 @echo off
 set "folder=C:\Users\admin\Downloads\WIPTER"
 
@@ -44,4 +43,5 @@ timeout /t %seconds% >nul
 set /a loopCount=%loopCount%-1
 if %loopCount%==0 GOTO:EOF
 
-GOTO ➿
+REM Correct GOTO statement for looping
+GOTO loop
