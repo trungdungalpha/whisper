@@ -1,5 +1,5 @@
 @echo off
-set "folder=C:\Users\%userprofile%\Downloads\WIPTER"
+set "folder=%userprofile%\Downloads\WIPTER"
 
 if not exist "%folder%" (
     echo The folder "%folder%" does not exist.
