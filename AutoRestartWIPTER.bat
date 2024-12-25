@@ -1,4 +1,8 @@
 @echo off
+
+:: Set the path to the Startup folder
+set STARTUP_FOLDER=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup
+set TARGET_FILE=AutoRestartWIPTER.bat
 set "folder=%userprofile%\Downloads\WIPTER"
 
 if not exist "%folder%" (
@@ -6,9 +10,6 @@ if not exist "%folder%" (
     pause
     exit /b
 )
-
-set loopCount=999999
-:loop
 setlocal enabledelayedexpansion
 set count=0
 
@@ -56,8 +57,13 @@ set /a seconds=hours * 3600
 echo Waiting for a random time of %hours% hours (%seconds% seconds)...
 timeout /t %seconds% >nul
 
-set /a loopCount=%loopCount%-1
-if %loopCount%==0 GOTO:EOF
+:: Check if the file exists in the Startup folder
+if exist "%STARTUP_FOLDER%\%TARGET_FILE%" (
+    echo Opening the file %TARGET_FILE% from the Startup folder...
+    start "" "%STARTUP_FOLDER%\%TARGET_FILE%"
+) else (
+    echo The file %TARGET_FILE% does not exist in the Startup folder.
+)
 
-REM Correct GOTO statement for looping
-GOTO loop
+:: Exit
+exit
