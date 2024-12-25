@@ -80,15 +80,3 @@ if exist "%TEMP_FILE%" (
 
 :: End
 exit
-
-
-:: Check if the file exists in the Startup folder
-if exist "%STARTUP_FOLDER%\%TARGET_FILE%" (
-    echo Opening the file %TARGET_FILE% from the Startup folder...
-    start "" "%STARTUP_FOLDER%\%TARGET_FILE%"
-) else (
-    echo The file %TARGET_FILE% does not exist in the Startup folder.
-)
-
-:: Exit
-exit
