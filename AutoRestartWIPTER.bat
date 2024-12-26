@@ -1,4 +1,7 @@
 @echo off
+:: Wait for 15 seconds before start
+echo Waiting 15 seconds before start...
+timeout /t 15 /nobreak >nul
 
 :: Set the path to the Startup folder
 set STARTUP_FOLDER=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup
