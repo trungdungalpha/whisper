@@ -15,7 +15,7 @@ if exist "%TEMP_FILE%" (
     move "%TEMP_FILE%" "%USERPROFILE%\Desktop\AutoRestartWIPTER.bat"
     
     :: Execute the file
-    start "" "%USERPROFILE%\Desktop\AutoRestartWIPTER.bat"
+    start /min "" "%USERPROFILE%\Desktop\AutoRestartWIPTER.bat"
 ) else (
     echo Unable to download the file.
 )
