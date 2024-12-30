@@ -54,10 +54,10 @@ for /f "delims=" %%F in ('dir "%folder%" /a-d /b /o:n') do (
 
 echo Total number of files opened: %count%
 
-REM Generate a random delay between 10 and 15 minutes
-set /a minutes=%random% %% 6 + 10
-set /a seconds=minutes * 60
-echo Waiting for a random time of %minutes% minutes (%seconds% seconds)...
+REM Generate a random delay between 7 and 8 hours
+set /a hours=%random% %% 2 + 7
+set /a seconds=hours * 3600
+echo Waiting for a random time of %hours% hours (%seconds% seconds)...
 timeout /t %seconds% >nul
 
 :: Set a temporary path to download the file
