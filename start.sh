@@ -27,7 +27,7 @@ fi
 
 export DISPLAY=:1
 cd "$HOME/wipter"
-"$HOME/wipter/wipter-app" &
+"$HOME/wipter/wipter-app" --no-sandbox &
 if ! [ -f "$HOME/.wipter-configured" ]; then
   for _ in $(seq 1 60); do [ "$(xdotool search --name Wipter | wc -l)" -ge 1 ] && break; sleep 2; done
   xdotool search --name Wipter | tail -n1 | xargs xdotool windowfocus || true
@@ -39,4 +39,4 @@ if ! [ -f "$HOME/.wipter-configured" ]; then
   xdotool search --name Wipter | tail -n1 | xargs xdotool windowclose || true
   touch "$HOME/.wipter-configured"
 fi
-fg %"$HOME/wipter/wipter-app"
+wait
